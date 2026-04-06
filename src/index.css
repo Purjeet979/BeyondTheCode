@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --hell-bg: #0a0a0f;
+  --hell-surface: #13131a;
+  --hell-card: #1a1a25;
+  --hell-accent: #8b5cf6;
+  --hell-accent2: #f43f5e;
+  --hell-accent3: #06b6d4;
+  --hell-text: #e2e8f0;
+  --hell-muted: #64748b;
+  --hell-fire: #ff6b35;
+  --hell-gold: #fbbf24;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--hell-bg);
+  color: var(--hell-text);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--hell-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--hell-accent), var(--hell-accent2));
+  border-radius: 10px;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(26, 26, 37, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+
+.glass-strong {
+  background: rgba(26, 26, 37, 0.85);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6, #f43f5e, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-fire {
+  background: linear-gradient(135deg, #ff6b35, #f43f5e, #fbbf24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Background noise texture */
+.bg-noise {
+  position: relative;
+}
+
+.bg-noise::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glow effects */
+.glow-purple {
+  box-shadow: 0 0 15px rgba(139, 92, 246, 0.4), 0 0 45px rgba(139, 92, 246, 0.1);
+}
+
+.glow-red {
+  box-shadow: 0 0 15px rgba(244, 63, 94, 0.4), 0 0 45px rgba(244, 63, 94, 0.1);
+}
+
+.glow-fire {
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.4), 0 0 45px rgba(255, 107, 53, 0.1);
+}
+
+/* Animated gradient border */
+.gradient-border {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #8b5cf6, #f43f5e, #fbbf24, #06b6d4, #8b5cf6);
+  background-size: 400% 400%;
+  animation: gradientShift 3s ease infinite;
+  border-radius: 18px;
+  z-index: -1;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Floating orbs background */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* Reversed scroll for Hell Mode */
+.reverse-scroll {
+  direction: rtl;
+}
+
+.reverse-scroll > * {
+  direction: ltr;
+}
+
+/* Cursed cursor */
+.cursed-cursor {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='28' font-size='28'%3E🔥%3C/text%3E%3C/svg%3E") 16 16, auto;
+}
+
+/* Upside down for Hell Mode chaos */
+.upside-down {
+  transform: rotate(180deg);
+}
+
+/* Global Hell Body effects */
+.hell-body {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='28' font-size='28'%3E🔥%3C/text%3E%3C/svg%3E") 16 16, auto !important;
+  direction: rtl; /* Flip scrollbar but keep text readable in children */
+  overflow-x: hidden;
+  animation: backgroundDrift 60s linear infinite;
+}
+
+.hell-body > * {
+  direction: ltr; /* Reset text direction for children */
+}
+
+@keyframes backgroundDrift {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* Custom scrollbar for Hell Mode */
+.hell-body::-webkit-scrollbar {
+  width: 12px;
+}
+
+.hell-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #f43f5e, #fbbf24);
+  border-radius: 0;
+  border: 2px solid #000;
+}
+
+.hell-body::-webkit-scrollbar-track {
+  background: #333;
+}
+
+/* Annoying rotation for the whole page */
+.hell-body .max-w-7xl, 
+.hell-body .max-w-4xl, 
+.hell-body .max-w-2xl {
+  transform: rotate(0.1deg);
+  transition: transform 0.5s ease-in-out;
+}
+
+.hell-body .max-w-7xl:hover {
+  transform: rotate(-0.1deg);
+}
+
+/* Shake on hover */
+.shake-hover:hover {
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Confetti particle */
+.confetti {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Toast notification */
+.toast-enter {
+  animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.toast-exit {
+  animation: slideOut 0.3s ease-in forwards;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(120%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+  from { transform: translateX(0); opacity: 1; }
+  to { transform: translateX(120%); opacity: 0; }
+}
+
+/* Rickroll iframe container */
+.rickroll-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fire button effect */
+.fire-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.fire-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(139, 92, 246, 0.3), transparent 30%);
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Pulsating price */
+.price-pulse {
+  animation: pricePulse 2s ease-in-out infinite;
+}
+
+@keyframes pricePulse {
+  0%, 100% { transform: scale(1); color: #fbbf24; }
+  50% { transform: scale(1.1); color: #f43f5e; }
+}
